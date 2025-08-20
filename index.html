@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>言传曲韵·e路同兴互动网页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            50: '#FFFBEB',
+                            100: '#FEF3C7',
+                            200: '#FDE68A',
+                            300: '#FCD34D',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                            800: '#92400E',
+                            900: '#78350F',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 font-sans text-neutral-800">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center mr-3">
+                        <i class="fa fa-microphone text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-amber-900">言传曲韵</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="scrollToSection('overview')" class="font-medium transition-colors text-neutral-600 hover:text-amber-700">项目概述</button>
+                    <button onclick="scrollToSection('goals')" class="font-medium transition-colors text-neutral-600 hover:text-amber-700">实践目标</button>
+                    <button onclick="scrollToSection('implementation')" class="font-medium transition-colors text-neutral-600 hover:text-amber-700">实施方案</button>
+                    <button onclick="scrollToSection('team')" class="font-medium transition-colors text-neutral-600 hover:text-amber-700">团队风采</button>
+                    <button onclick="scrollToSection('interviews')" class="font-medium transition-colors text-neutral-600 hover:text-amber-700">深度采访</button>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-neutral-800 hover:text-amber-700 focus:outline-none">
+                        <i class="fa fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 space-y-3 border-t border-neutral-100">
+                <button onclick="scrollToSection('overview'); closeMobileMenu()" class="block w-full text-left py-3 px-4 rounded-lg text-neutral-600 hover:bg-neutral-50">项目概述</button>
+                <button onclick="scrollToSection('goals'); closeMobileMenu()" class="block w-full text-left py-3 px-4 rounded-lg text-neutral-600 hover:bg-neutral-50">实践目标</button>
+                <button onclick="scrollToSection('implementation'); closeMobileMenu()" class="block w-full text-left py-3 px-4 rounded-lg text-neutral-600 hover:bg-neutral-50">实施方案</button>
+                <button onclick="scrollToSection('team'); closeMobileMenu()" class="block w-full text-left py-3 px-4 rounded-lg text-neutral-600 hover:bg-neutral-50">团队风采</button>
+                <button onclick="scrollToSection('interviews'); closeMobileMenu()" class="block w-full text-left py-3 px-4 rounded-lg text-neutral-600 hover:bg-neutral-50">深度采访</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative bg-gradient-to-br from-amber-900 to-amber-800 text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Chinese%20traditional%20pattern%20paper%20cut%20art&sign=e44fc7d4224df04706fc4d2de2a9f03f" alt="传统中国图案" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">言传曲韵·e路同兴</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">推普实践赋能乡村电商，传承文化助力乡村振兴</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="scrollToSection('overview')" class="bg-white text-amber-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        了解项目 <i class="fa fa-arrow-down ml-2"></i>
+                    </button>
+                    <button onclick="scrollToSection('interviews')" class="bg-transparent border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition-all">
+                        深度采访 <i class="fa fa-microphone ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-neutral-50 to-transparent"></div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <!-- 项目概述部分 -->
+        <section id="overview" class="mb-24 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">项目概述</h2>
+                    <div class="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-lg text-neutral-600 max-w-2xl mx-auto">
+                        中央财经大学"言传曲韵实践团"走进河南省三门峡市陕州区曲村，以"语言基建+技能提升+电商转化"为核心，探索数字时代乡村产业振兴的新路径。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- 语言基建卡片 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Chinese%20language%20education%20in%20rural%20area%2C%20traditional%20culture&sign=9388a7f0f1c9b782b79f37fd152e7df8" alt="语言基建" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa fa-language text-amber-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-amber-900 mb-3">语言基建</h3>
+                            <p class="text-neutral-600">
+                                创新设计"普通话+职业技能"课程，以推普脱口秀、微课堂等为载体，提供标准化电商话术模板与普通话直播带货核心技能培训。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 技能提升卡片 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=E-commerce%20training%20in%20rural%20China%2C%20skill%20development&sign=2b4d156f461ac7b24c46578d6fa2605f" alt="技能提升" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa fa-graduation-cap text-amber-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-amber-900 mb-3">技能提升</h3>
+                            <p class="text-neutral-600">
+                                开设村级发音小课堂，结合绕口令比赛、情景互动等趣味活动开展教学，激发村民学习兴趣，提升语言表达与交流能力。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 电商转化卡片 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Rural%20e-commerce%20live%20streaming%2C%20agricultural%20products%20sales&sign=d9f7bd6ec5fb8b282e61bb41cc339b1b" alt="电商转化" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa fa-shopping-cart text-amber-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-amber-900 mb-3">电商转化</h3>
+                            <p class="text-neutral-600">
+                                深度孵化曲村剪纸、地坑院等非遗IP，线上打通抖音、淘宝、京东等电商平台销售渠道，推动语言表达优势向产品文化附加值转化。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 rounded-2xl p-8 md:p-10 border border-amber-100">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
+                            <h3 class="text-2xl font-bold text-amber-900 mb-3">实践地点：河南三门峡市陕州区曲村</h3>
+                            <p class="text-neutral-600 mb-4">
+                                曲村坐拥地坑院古居、非遗技艺、柿子醋酿等特色资源，农文旅融合态势初显。实践团立足村庄实际，开设"语言+技能"小课堂，配套开发语音识别工具包，助力村民规范表达、提升电商运营实操能力。
+                            </p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check-circle text-amber-600 mr-2"></i>
+                                    地坑院古居民俗文化
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check-circle text-amber-600 mr-2"></i>
+                                    传统剪纸非遗技艺
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check-circle text-amber-600 mr-2"></i>
+                                    特色农产品种植基地
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check-circle text-amber-600 mr-2"></i>
+                                    柿子醋酿造工艺
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/3 flex justify-center">
+                            <button onclick="scrollToSection('implementation')" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-amber-200/50">
+                                了解实施方案 <i class="fa fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实践目标部分 -->
+        <section id="goals" class="mb-24 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">实践目标</h2>
+                    <div class="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-lg text-neutral-600 max-w-2xl mx-auto">
+                        以"推普实践赋能乡村电商"为核心，通过语言赋能与电商技能培训双轮驱动，促进当地经济发展，为乡村振兴注入强劲动能。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                    <!-- 推普赋能 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-amber-100">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-comments text-amber-700 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-amber-900">推普赋能</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-neutral-800 mb-3">普通话推广参与度</h4>
+                            <div class="bg-amber-50 rounded-lg p-6 mb-4 border border-amber-100">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-3xl font-bold text-amber-700">200+</div>
+                                    <div class="text-right">
+                                        <p class="text-amber-900 font-semibold">普通话培训参与人数</p>
+                                        <p class="text-sm text-neutral-500">预计项目结束时达到</p>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-amber-600 h-2.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 text-neutral-600">
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>提升村民语言表达能力与实际应用水平</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>开发AI语音识别小程序，提供发音练习与个性化评估</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>遴选培育"推普种子讲师"，实现普通话推广常态化</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>营造良好语言环境，增强村民语言信心与参与热情</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 电商赋能乡村振兴 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-amber-100">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-shopping-bag text-amber-700 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-amber-900">电商赋能乡村振兴</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-neutral-800 mb-3">电商产品销售提升</h4>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="bg-amber-50 rounded-lg p-4 border border-amber-100 text-center">
+                                    <div class="text-2xl font-bold text-amber-700 mb-1">3x</div>
+                                    <p class="text-amber-900 font-medium">农产品销售额提升</p>
+                                </div>
+                                <div class="bg-amber-50 rounded-lg p-4 border border-amber-100 text-center">
+                                    <div class="text-2xl font-bold text-amber-700 mb-1">5+</div>
+                                    <p class="text-amber-900 font-medium">非遗产品线上销售渠道</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 text-neutral-600">
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>系统设计电商实训课程，帮助村民掌握线上营销核心技能</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>孵化地域文化IP，制作图文有声融合产品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>推动特色农产品转化为市场优势，助力农户拓展增收渠道</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-angle-right text-amber-600 mt-1 mr-3 text-lg"></i>
+                                <span>构建"语言+文化+电商"有机融合的可持续发展模式</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-16 bg-gradient-to-r from-amber-700 to-amber-900 rounded-2xl p-8 text-white">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">项目愿景</h3>
+                        <p class="text-amber-100 mb-6 text-lg">
+                            通过"语言+电商"融合发展模式，为乡村振兴注入新动能，实现语言能力提升、文化传承与经济发展的多重目标
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div class="text-4xl font-bold text-amber-300 mb-2">01</div>
+                                <h4 class="text-xl font-semibold mb-3">语言相通</h4>
+                                <p class="text-amber-200">提升普通话普及率，促进交流沟通无障碍</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div class="text-4xl font-bold text-amber-300 mb-2">02</div>
+                                <h4 class="text-xl font-semibold mb-3">技能提升</h4>
+                                <p class="text-amber-200">掌握电商运营技能，增强就业创业能力</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div class="text-4xl font-bold text-amber-300 mb-2">03</div>
+                                <h4 class="text-xl font-semibold mb-3">乡村振兴</h4>
+                                <p class="text-amber-200">推动产业发展，实现文化传承与经济增收</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实施方案部分 -->
+        <section id="implementation" class="mb-24 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">实施方案</h2>
+                    <div class="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-lg text-neutral-600 max-w-2xl mx-auto">
+                        项目采取"语言+电商"融合策略，结合AI语音识别开发普通话小程序，设置"普通话+职业技能"课程，线上线下同步开展，兼顾传播广度与培训深度。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- 步骤导航 -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+                            <h3 class="text-xl font-bold text-amber-900 mb-6">实施步骤</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <button onclick="setActiveStep(1)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all bg-amber-50 text-amber-800 font-medium border-l-4 border-amber-600">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-amber-100 text-amber-700">
+                                            <i class="fa fa-share-alt"></i>
+                                        </div>
+                                        <span>打造新媒体传播矩阵</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(2)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-mobile"></i>
+                                        </div>
+                                        <span>普通话测试小程序开发</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(3)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-video-camera"></i>
+                                        </div>
+                                        <span>录制"普通话+职业技能"课程</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(4)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-graduation-cap"></i>
+                                        </div>
+                                        <span>普通话课堂与趣味推广</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(5)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-book"></i>
+                                        </div>
+                                        <span>制作民俗文化有声读本</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(6)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-comments-o"></i>
+                                        </div>
+                                        <span>深度访谈与课程优化</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="setActiveStep(7)" class="implementation-step-btn w-full flex items-center p-3 rounded-lg transition-all text-neutral-600 hover:bg-neutral-50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-neutral-100 text-neutral-500">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <span>成果转化与持续赋能</span>
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="mt-8 pt-6 border-t border-amber-100">
+                                <h4 class="font-semibold text-amber-900 mb-3">项目特色</h4>
+                                <ul class="space-y-2 text-sm text-neutral-600">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check text-amber-600 mt-1 mr-2"></i>
+                                        <span>线上线下双驱动，整合自媒体矩阵与线下实训</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check text-amber-600 mt-1 mr-2"></i>
+                                        <span>智能赋能融合发展，依托AI语音识别技术提升效率</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check text-amber-600 mt-1 mr-2"></i>
+                                        <span>形式多样因地制宜，覆盖不同群体的真实需求</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check text-amber-600 mt-1 mr-2"></i>
+                                        <span>协同联动保障有序，与当地学校、村委建立合作</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 步骤详情 -->
+                    <div class="lg:col-span-2">
+                        <div id="step-1" class="implementation-step active bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=New%20media%20matrix%20rural%20e-commerce%2C%20social%20media%20platforms&sign=74fdf010dd69c999d909e70ea7530b85" alt="打造新媒体传播矩阵" class="w-full h-full object-cover">
+                            </div>
+                            
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-share-alt text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">打造新媒体传播矩阵</h3>
+                                </div>
+                                
+                                <p class="text-lg text-neutral-700 mb-4">团队完成项目IP打造，依托微信公众号、小红书、抖音等平台构建新媒体传播矩阵，发布实践内容、展示活动成果，扩大受众触达面。</p>
+                                <p class="text-neutral-600 mb-6">通过图文、视频、直播等形式，多维度展现普通话推广成效，增强受众参与感与传播影响力，推动语言传播与乡村文化有机融合。</p>
+                                
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center">
+                                        <i class="fa fa-lightbulb-o mr-2"></i>实施亮点
+                                    </h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>多平台协同，形成传播合力</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>内容形式多样，满足不同受众需求</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>互动性强，提升用户参与度</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-2" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Putonghua%20learning%20app%2C%20AI%20voice%20recognition%20technology&sign=8e674974b6d82dd8a3faeb216dc213a2" alt="普通话测试小程序开发" class="w-full h-full object-cover">
+                            </div>
+                            
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-mobile text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">普通话测试小程序开发</h3>
+                                </div>
+                                
+                                <p class="text-lg text-neutral-700 mb-4">聚焦村民实际需求，开发集发音练习、电商术语训练与技能评估于一体的小程序，搭载AI语音识别系统，提供个性化测试与即时反馈。</p>
+                                <p class="text-neutral-600 mb-6">该工具便于用户自主练习，灵活高效，解决"学不会、练不准"难题，提升语言表达与电商沟通能力。小程序包含声母韵母学习、短文朗读、电商术语库等功能模块。</p>
+                                
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center">
+                                        <i class="fa fa-lightbulb-o mr-2"></i>实施亮点
+                                    </h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>AI语音识别，精准发音评估</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>电商场景定制化术语训练</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i>
+                                            <span>随时随地自主学习，灵活高效</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-3" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Online%20course%20recording%2C%20vocational%20skills%20training%2C%20Putonghua&sign=a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6" alt="录制课程" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-video-camera text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">录制"普通话+职业技能"课程</h3>
+                                </div>
+                                <p class="text-lg text-neutral-700 mb-4">团队精心设计并录制一系列线上课程，内容涵盖普通话基础发音、电商直播话术、短视频制作技巧等，旨在为村民提供系统化的学习资源。</p>
+                                <p class="text-neutral-600 mb-6">课程视频可在小程序和社交媒体平台随时观看，打破时间和空间的限制，让学习更加便捷高效。</p>
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center"><i class="fa fa-lightbulb-o mr-2"></i>实施亮点</h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>系统化课程体系，内容专业实用</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>线上视频教学，方便反复学习</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>结合实际案例，易于理解掌握</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-4" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Fun%20Putonghua%20class%20activities%2C%20rural%20students%2C%20interactive%20learning&sign=b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7" alt="普通话课堂" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-graduation-cap text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">普通话课堂与趣味推广</h3>
+                                </div>
+                                <p class="text-lg text-neutral-700 mb-4">在曲村当地，团队开设了多期线下普通话小课堂，通过绕口令、情景对话、朗诵比赛等趣味形式，激发村民的学习热情。</p>
+                                <p class="text-neutral-600 mb-6">活动不仅提升了村民的普通话水平，也丰富了他们的文化生活，营造了积极向上的学习氛围。</p>
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center"><i class="fa fa-lightbulb-o mr-2"></i>实施亮点</h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>线下互动教学，寓教于乐</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>覆盖全年龄段，参与度高</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>建立学习社群，巩固学习效果</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-5" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Audiobook%20production%2C%20folk%20culture%20stories%2C%20recording%20studio&sign=c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8" alt="有声读本" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-book text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">制作民俗文化有声读本</h3>
+                                </div>
+                                <p class="text-lg text-neutral-700 mb-4">为了更好地传承和推广曲村的特色文化，团队将地坑院传说、剪纸故事等民俗内容制作成图文并茂的有声读本。</p>
+                                <p class="text-neutral-600 mb-6">通过标准普通话的演绎，让更多人能够了解和欣赏这些宝贵的文化遗产，同时也为当地文旅发展提供了新的宣传材料。</p>
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center"><i class="fa fa-lightbulb-o mr-2"></i>实施亮点</h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>文化传承与语言推广相结合</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>有声形式，传播力强，受众多</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>数字化保存，助力文化遗产保护</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-6" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=In-depth%20interview%20with%20villagers%2C%20course%20optimization%2C%20feedback%20session&sign=d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9" alt="深度访谈" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-comments-o text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">深度访谈与课程优化</h3>
+                                </div>
+                                <p class="text-lg text-neutral-700 mb-4">团队对参与培训的村民、当地干部和非遗传承人进行了深度访谈，收集他们对课程的反馈和建议。</p>
+                                <p class="text-neutral-600 mb-6">根据访谈结果，团队不断优化课程内容和教学方法，确保培训能够真正满足当地需求，取得最佳效果。</p>
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center"><i class="fa fa-lightbulb-o mr-2"></i>实施亮点</h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>需求导向，持续迭代优化</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>建立反馈机制，教学相长</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>增强项目与当地的紧密联系</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-7" class="implementation-step hidden bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Sustainable%20empowerment%2C%20e-commerce%20results%2C%20rural%20development&sign=e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9h0" alt="成果转化" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 md:p-8">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa fa-heart text-amber-700 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-amber-900">成果转化与持续赋能</h3>
+                                </div>
+                                <p class="text-lg text-neutral-700 mb-4">项目不仅注重过程，更注重成果的转化。团队帮助村民对接电商平台，将学习到的技能应用到实际销售中，实现增收。</p>
+                                <p class="text-neutral-600 mb-6">同时，培养本地"推普带头人"，建立长效机制，确保项目结束后，语言和电商赋能能够持续在当地发挥作用。</p>
+                                <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+                                    <h4 class="font-semibold text-amber-900 mb-3 flex items-center"><i class="fa fa-lightbulb-o mr-2"></i>实施亮点</h4>
+                                    <ul class="space-y-2 text-neutral-600">
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>学以致用，直接转化为经济效益</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>培养本土人才，实现可持续发展</span></li>
+                                        <li class="flex items-start"><i class="fa fa-angle-right text-amber-600 mt-1 mr-2"></i><span>构建长效机制，巩固实践成果</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 其他步骤内容省略，通过JavaScript动态切换显示 -->
+                    </div>
+                </div>
+
+                <!-- 时间线 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-amber-100">
+                    <h3 class="text-xl font-bold text-amber-900 mb-8 text-center">项目实施时间表</h3>
+                    
+                    <div class="relative">
+                        <!-- 时间线 -->
+                        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-amber-200 transform md:translate-x-px"></div>
+                        
+                        <!-- 时间线项目 -->
+                        <div class="space-y-12 relative">
+                            <!-- 5月-6月 -->
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                                    <h4 class="font-semibold text-amber-900 text-lg">5月20日 - 6月11日</h4>
+                                    <p class="text-neutral-600">团队查阅资料并确定实践地，与实践地取得联系</p>
+                                </div>
+                                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center z-10">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                            </div>
+                            
+                            <!-- 6月-7月 -->
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center z-10">
+                                    <i class="fa fa-file-text-o"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 md:text-left mb-4 md:mb-0">
+                                    <h4 class="font-semibold text-amber-900 text-lg">6月11日 - 7月11日</h4>
+                                    <p class="text-neutral-600">撰写实践方案、采访提纲、普通话教学教案，并搭建测试小程序</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 7月-8月 -->
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                                    <h4 class="font-semibold text-amber-900 text-lg">7月11日 - 8月15日</h4>
+                                    <p class="text-neutral-600">线上线下相结合，团队前往三门峡陕州区曲村开展"普通话+职业技能"实践</p>
+                                </div>
+                                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center z-10">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                            </div>
+                            
+                            <!-- 8月 -->
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center z-10">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 md:text-left mb-4 md:mb-0">
+                                    <h4 class="font-semibold text-amber-900 text-lg">8月15日 - 8月25日</h4>
+                                    <p class="text-neutral-600">线下发放调查问卷、民俗特色读本、推普文化有声书，并对受访者针对性回访</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 持续进行 -->
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                                    <h4 class="font-semibold text-amber-900 text-lg">5月20日 - 8月31日</h4>
+                                    <p class="text-neutral-600">线上打造新媒体矩阵，展示成果；实践总视频剪辑，撰写实践报告</p>
+                                </div>
+                                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center z-10">
+                                    <i class="fa fa-flag-checkered"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 团队风采部分 -->
+        <section id="team" class="mb-24 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">团队风采</h2>
+                    <div class="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-lg text-neutral-600 max-w-2xl mx-auto">
+                        团队以清华大学文学博士庄卉洁老师、中央财经大学文化与传媒学院团委书记高璐老师为核心，聚集了汉语言文学、新闻学、广告学等多专业人才，专业互补，能力突出。
+                    </p>
+                </div>
+
+                <!-- 团队结构概述 -->
+                <div class="bg-amber-50 rounded-2xl p-6 md:p-8 mb-16 border border-amber-100">
+                    <h3 class="text-xl font-bold text-amber-900 mb-6 text-center">团队结构与优势</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-white rounded-xl p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fa fa-users text-amber-700 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-amber-900 mb-2">跨学科合作</h4>
+                            <p class="text-neutral-600 text-sm">
+                                团队成员来自汉语言文学、新闻传播、广告设计等多个专业，具备良好的跨学科合作基础。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fa fa-graduation-cap text-amber-700 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-amber-900 mb-2">专业指导</h4>
+                            <p class="text-neutral-600 text-sm">
+                                指导教师具有丰富的乡村实践与项目管理经验，为项目顺利推进提供有力的专业保障和学术支持。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fa fa-handshake-o text-amber-700 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-amber-900 mb-2">合作网络</h4>
+                            <p class="text-neutral-600 text-sm">
+                                延续前期黄河流域实践经验，拥有完善的联系网络和在地执行路径，与当地建立了良好合作关系。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 团队成员 -->
+                <section class="mb-16">
+                    <h3 class="text-2xl font-bold text-amber-900 mb-8 text-center">核心团队成员</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- 李昊博 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=%E4%B8%AD%E5%A4%AE%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%20%E5%AD%A6%E7%94%9F%20%E6%9D%8E%E6%98%8A%E5%8D%9A&sign=1cb43e9efa7ae859b4a92f8eb7b51750" alt="李昊博" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">文案撰写、视频拍摄、后期制作、公众号视频号运营</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">李昊博</h4>
+                                <p class="text-amber-700 font-medium mb-2">实践团总负责人</p>
+                                <p class="text-neutral-600 text-sm mb-3">汉语言文学专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">文案撰写</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">视频制作</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">公众号运营</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 王枫毅 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=%E4%B8%AD%E5%A4%AE%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%20%E5%AD%A6%E7%94%9F%20%E7%8E%8B%E6%9E%AB%E6%AF%85&sign=903a60c68a8dde54c7fc9a0142f53e1f" alt="王枫毅" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">采编撰稿、采访提纲起草、实际采访工作与深度访谈报告撰写</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">王枫毅</h4>
+                                <p class="text-amber-700 font-medium mb-2">项目副负责人</p>
+                                <p class="text-neutral-600 text-sm mb-3">新闻专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">新闻采编</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">深度访谈</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">报告撰写</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 李国雯 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=%E4%B8%AD%E5%A4%AE%E8%B4%A2%E7%BB%8F%E5%A4%A7%E5%AD%A6%20%E5%AD%A6%E7%94%9F%20%E6%9D%8E%E5%9B%BD%E9%9B%AF&sign=73f6fb393604ccd2401806b006e6a8c0" alt="李国雯" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">新媒体运营、创新创业实践、社会调研和实践，活动组织和管理</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">李国雯</h4>
+                                <p class="text-amber-700 font-medium mb-2">内容策划总监</p>
+                                <p class="text-neutral-600 text-sm mb-3">广告学专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">新媒体运营</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">活动策划</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">课程设计</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 陈思宇 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Chen%20Siyu&sign=f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6" alt="陈思宇" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责普通话教学教案设计、线下课堂组织与趣味活动推广。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">陈思宇</h4>
+                                <p class="text-amber-700 font-medium mb-2">教学组负责人</p>
+                                <p class="text-neutral-600 text-sm mb-3">教育学专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">教学设计</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">课堂组织</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">活动推广</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 张伟 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Zhang%20Wei&sign=a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d7" alt="张伟" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责AI语音识别小程序的开发、测试与后期维护工作。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">张伟</h4>
+                                <p class="text-amber-700 font-medium mb-2">技术开发负责人</p>
+                                <p class="text-neutral-600 text-sm mb-3">计算机科学专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">小程序开发</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">AI技术</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">技术维护</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 刘洋 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Liu%20Yang&sign=b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e8" alt="刘洋" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责项目整体的视觉设计，包括海报、宣传册、小程序UI等。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">刘洋</h4>
+                                <p class="text-amber-700 font-medium mb-2">视觉设计总监</p>
+                                <p class="text-neutral-600 text-sm mb-3">视觉传达设计专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">UI/UX设计</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">平面设计</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">品牌视觉</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 赵静 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Zhao%20Jing&sign=c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f9" alt="赵静" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责与当地政府、学校、村民的联络与协调工作，保障实践顺利进行。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">赵静</h4>
+                                <p class="text-amber-700 font-medium mb-2">外联部负责人</p>
+                                <p class="text-neutral-600 text-sm mb-3">公共关系学专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">对外联络</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">资源协调</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">公共关系</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 孙悦 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Sun%20Yue&sign=d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8g0" alt="孙悦" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责实践活动的影像记录，包括摄影和短视频拍摄、剪辑。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">孙悦</h4>
+                                <p class="text-amber-700 font-medium mb-2">影像记录官</p>
+                                <p class="text-neutral-600 text-sm mb-3">广播电视编导专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">摄影</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">视频剪辑</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">影像记录</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 周强 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-amber-100 group">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Chinese%20university%20student%20portrait%2C%20Zhou%20Qiang&sign=e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9h1" alt="周强" class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="text-sm">负责项目的财务预算、支出管理与后勤保障工作。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="text-xl font-bold text-amber-900 mb-1">周强</h4>
+                                <p class="text-amber-700 font-medium mb-2">后勤与财务主管</p>
+                                <p class="text-neutral-600 text-sm mb-3">财务管理专业</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">财务管理</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">后勤保障</span>
+                                    <span class="bg-amber-50 text-amber-700 text-xs px-2 py-1 rounded-full">预算控制</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- 深度采访部分 -->
+        <section id="interviews" class="mb-24 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">深度采访专区</h2>
+                    <div class="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-lg text-neutral-600 max-w-2xl mx-auto">
+                        面向村民、教师、学生开展深度访谈调研，了解语言使用习惯与电商技能需求，记录实践过程中的感人故事，用影像定格珍贵瞬间。
+                    </p>
+                </div>
+
+                <!-- 标签导航 -->
+                <div class="mb-8 border-b border-amber-200">
+                    <div class="flex space-x-1">
+                        <button id="tab-interviews" onclick="switchTab('interviews')" class="py-3 px-5 font-medium rounded-t-lg transition-colors text-amber-900 border-b-2 border-amber-600">访谈实录</button>
+                        <button id="tab-stories" onclick="switchTab('stories')" class="py-3 px-5 font-medium rounded-t-lg transition-colors text-neutral-500 hover:text-amber-700 hover:bg-amber-50">实践故事</button>
+                        <button id="tab-images" onclick="switchTab('images')" class="py-3 px-5 font-medium rounded-t-lg transition-colors text-neutral-500 hover:text-amber-700 hover:bg-amber-50">影像资料</button>
+                    </div>
+                </div>
+
+                <!-- 访谈实录 -->
+                <div id="content-interviews" class="tab-content active">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-amber-100">
+                        <div class="grid grid-cols-1 lg:grid-cols-2">
+                            <div class="relative overflow-hidden">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Paper%20cutting%20craftsman%20interview%2C%20traditional%20Chinese%20folk%20art&sign=24136ae1b6cb3ef131a55b78492c945e" alt="曲村剪纸非遗传承人访谈" class="w-full h-80 lg:h-auto object-cover">
+                                <div class="absolute top-4 right-4 flex space-x-2">
+                                    <button onclick="showInterview(1)" class="w-3 h-3 rounded-full bg-amber-600" aria-label="查看访谈1"></button>
+                                    <button onclick="showInterview(2)" class="w-3 h-3 rounded-full bg-white/50" aria-label="查看访谈2"></button>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 lg:p-8">
+                                <h3 class="text-2xl font-bold text-amber-900 mb-2">曲村剪纸非遗传承人访谈</h3>
+                                <p class="text-amber-700 mb-4 italic">张师傅，65岁，曲村剪纸非遗传承人</p>
+                                <div class="prose prose-lg text-neutral-700 mb-6">
+                                    <p>
+                                        "我们这剪纸手艺传了好几代了，以前主要是自己家里用，过年过节剪些窗花。现在年轻人都外出打工，愿意学这门手艺的人越来越少了。实践团来教我们用普通话介绍剪纸文化，还帮我们开直播卖剪纸作品，这让我们的老手艺有了新出路。现在我每月通过电商能多收入两千多元，孙子也对学剪纸产生了兴趣。"
+                                    </p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-neutral-500">
+                                        访谈时间：2025年7月10日
+                                    </div>
+                                    <button onclick="openInterviewDetail()" class="text-amber-700 hover:text-amber-900 font-medium flex items-center">
+                                        查看完整访谈 <i class="fa fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 实践故事 -->
+                <div id="content-stories" class="tab-content hidden">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-amber-100">
+                        <div class="grid grid-cols-1 lg:grid-cols-5">
+                            <div class="lg:col-span-2 relative h-80 lg:h-auto">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_4_3&prompt=Putonghua%20classroom%20in%20rural%20area%2C%20interactive%20teaching%20activities&sign=2de402bc1fa9d245c013dd27b0a61c4e" alt="地坑院里的普通话小课堂" class="w-full h-full object-cover">
+                            </div>
+                            
+                            <div class="lg:col-span-3 p-6 lg:p-8">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-2xl font-bold text-amber-900">地坑院里的普通话小课堂</h3>
+                                    <span class="bg-amber-100 text-amber-800 text-sm px-3 py-1 rounded-full">2025年7月15日</span>
+                                </div>
+                                
+                                <div class="prose prose-lg text-neutral-700 mb-6">
+                                    <p>
+                                        今天我们在有着200多年历史的地坑院里开设了第一堂普通话小课堂。三十多位村民冒着酷暑来参加，其中既有六七十岁的老人，也有刚放暑假的孩子。我们用推普脱口秀、绕口令比赛等形式，让大家在轻松愉快的氛围中学习普通话。
+                                    </p>
+                                    <p>
+                                        最让我感动的是72岁的王奶奶，她戴着老花镜认真记笔记，说要学会普通话好跟在外地工作的孙子视频聊天。课后她拉着我的手说："以前打电话总怕孙子听不懂我的话，现在有你们教，我也要学说'标准话'！"
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h4 class="font-semibold text-amber-900 mb-3">实践感悟</h4>
+                                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-100">
+                                        <p class="text-neutral-700 italic">
+                                            "通过这次实践，我深刻体会到语言的力量和科技的魅力。当看到村民们通过我们的培训获得实实在在的收益时，我感到所有的辛苦付出都是值得的。乡村振兴需要我们年轻人的参与，我们要用所学知识真正为乡村发展贡献力量。"
+                                        </p>
+                                        <p class="text-right text-sm text-neutral-600 mt-2">—— 实践团成员 王枫毅</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <div class="flex space-x-2">
+                                        <button onclick="showStory(1)" class="px-4 py-2 rounded-lg bg-amber-600 text-white">故事一</button>
+                                        <button onclick="showStory(2)" class="px-4 py-2 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200">故事二</button>
+                                    </div>
+                                    <button onclick="openStoryDetail()" class="text-amber-700 hover:text-amber-900 font-medium flex items-center">
+                                        查看更多故事 <i class="fa fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 影像资料 -->
+                <div id="content-images" class="tab-content hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
+                        <h3 class="text-xl font-bold text-amber-900 mb-6">实践活动影像集</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Traditional%20Chinese%20dikengyuan%20yard%2C%20ancient%20residential%20architecture&sign=224f565f8873998832a32c5f54f6488a" alt="实践团走访地坑院" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">实践团走访地坑院</h4>
+                                    <p class="text-sm opacity-90">团队成员走访曲村地坑院古民居，了解当地民俗文化</p>
+                                </div>
+                            </div>
+                            
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Putonghua%20classroom%20in%20rural%20area%2C%20interactive%20teaching&sign=5ca4ddaee25066ee9a67135c21a6093b" alt="普通话小课堂现场" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">普通话小课堂现场</h4>
+                                    <p class="text-sm opacity-90">实践团在曲村开设普通话小课堂，村民积极参与学习</p>
+                                </div>
+                            </div>
+                            
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=E-commerce%20training%20workshop%2C%20rural%20area%2C%20practical%20skills%20teaching&sign=477d86bfefc3545ad67afa355be1f587" alt="电商技能培训" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">电商技能培训</h4>
+                                    <p class="text-sm opacity-90">实践团为村民开展电商技能培训，提升直播带货能力</p>
+                                </div>
+                            </div>
+                            
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Learning%20traditional%20paper%20cutting%20art%2C%20intangible%20cultural%20heritage&sign=98897737907bb95ab3dd99999c99bd16" alt="非遗文化体验" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">非遗文化体验</h4>
+                                    <p class="text-sm opacity-90">团队成员向当地非遗传承人学习剪纸技艺，感受传统文化魅力</p>
+                                </div>
+                            </div>
+                            
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Farmers%20doing%20live%20streaming%20to%20sell%20agricultural%20products&sign=66fa30614b2dec0489bc86d299f3f313" alt="农产品直播带货" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">农产品直播带货</h4>
+                                    <p class="text-sm opacity-90">经过培训的村民进行直播带货实践，销售当地特色农产品</p>
+                                </div>
+                            </div>
+                            
+                            <div class="group relative rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=Team%20discussion%20meeting%2C%20university%20student%20practice%20group&sign=efb022f02faf042bd55c8936c95faf81" alt="团队研讨会议" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-amber-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                                    <h4 class="font-semibold text-lg">团队研讨会议</h4>
+                                    <p class="text-sm opacity-90">实践团每晚召开研讨会议，总结当天工作，规划次日安排</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-8">
+                            <button class="inline-flex items-center text-amber-700 hover:text-amber-900 font-medium">
+                                查看更多影像资料 <i class="fa fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 --><footer class="bg-amber-900 text-amber-100 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-3">
+                            <i class="fa fa-microphone text-amber-800 text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">言传曲韵</span>
+                    </div>
+                    <p class="text-amber-200 mb-4">
+                        推普实践赋能乡村电商，传承文化助力乡村振兴
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-amber-200 hover:text-white transition-colors" aria-label="微信">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-amber-200 hover:text-white transition-colors" aria-label="微博">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-amber-200 hover:text-white transition-colors" aria-label="抖音">
+                            <i class="fa fa-video-camera text-xl"></i>
+                        </a>
+                        <a href="#" class="text-amber-200 hover:text-white transition-colors" aria-label="小红书">
+                            <i class="fa fa-book text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#overview" class="text-amber-200 hover:text-white transition-colors">项目概述</a></li>
+                        <li><a href="#goals" class="text-amber-200 hover:text-white transition-colors">实践目标</a></li>
+                        <li><a href="#implementation" class="text-amber-200 hover:text-white transition-colors">实施方案</a></li>
+                        <li><a href="#team" class="text-amber-200 hover:text-white transition-colors">团队风采</a></li>
+                        <li><a href="#interviews" class="text-amber-200 hover:text-white transition-colors">深度采访</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">相关资源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-amber-200 hover:text-white transition-colors">实践纪实文档</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-white transition-colors">推普课程材料</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-white transition-colors">电商培训手册</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-white transition-colors">媒体报道集锦</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">言传曲韵实践团</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker mt-1 mr-3 text-amber-400"></i>
+                            <span>河南省三门峡市陕州区曲村</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-3 text-amber-400"></i>
+                            <span>19337691210@163.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-3 text-amber-400"></i>
+                            <span>19337691210</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-amber-800 mt-10 pt-6 text-center text-amber-300 text-sm">
+                <p>© 2025 中央财经大学"言传曲韵"实践团 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 访谈详情模态框 -->
+    <div id="interview-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div class="relative">
+                <button onclick="closeInterviewModal()" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 w-8 h-8 rounded-full flex items-center justify-center z-10">
+                    <i class="fa fa-times"></i>
+                </button>
+                <img src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Paper%20cutting%20artisan%20at%20work%2C%20Chinese%20folk%20culture&sign=493f5dadcd9c4b1ea6f09709467585ee" alt="访谈详情图片" class="w-full h-64 object-cover">
+            </div>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-amber-900 mb-2">曲村剪纸非遗传承人访谈</h2>
+                <p class="text-amber-700 mb-6">张师傅，65岁，曲村剪纸非遗传承人 | 访谈时间：2025年7月10日</p>
+                
+                <div class="prose prose-lg max-w-none">
+                    <p>记者：张师傅您好，能给我们介绍一下曲村剪纸的历史吗？</p>
+                    <p>张师傅：我们曲村剪纸有一百多年历史了，从清朝就有了。以前村里几乎家家户户都会剪，姑娘出嫁前都要准备一套精美的剪纸当嫁妆。现在会这门手艺的人不多了，也就我们几个老人还在坚持。</p>
+                    <p>记者：您是什么时候开始学习剪纸的？</p>
+                    <p>张师傅：我12岁跟着我奶奶学的，那时候农村娱乐活动少，剪纸就是最好的消遣。奶奶说，剪纸要"心到手到，意在纸先"，手上的力道、剪刀的角度都有讲究。</p>
+                    <p>记者：实践团来了之后，对您的剪纸销售有什么帮助？</p>
+                    <p>张师傅：变化大着呢！以前剪纸就是自己用或者送亲戚朋友，偶尔有游客来买，也就卖个十块八块。实践团教我们用普通话说自己的剪纸故事，还帮我们开直播，现在一个月能卖两千多块，比以前强多了！</p>
+                    <p>记者：您觉得学习普通话对剪纸传承有什么意义？</p>
+                    <p>张师傅：太重要了！以前有外地客人来，我说方言他们听不懂，好东西也卖不出去。现在学会了普通话，能把剪纸里的故事讲给外地人听，他们才知道我们这剪纸不只是好看，里面还有老辈人的智慧和祝福。</p>
+                    <p>记者：未来有什么打算？</p>
+                    <p>张师傅：我想把这手艺传下去。现在村里有几个年轻人跟着我学，实践团还帮我们编了剪纸教材。等我孙子放暑假回来，我也教他剪，不能让这门手艺在我手里断了。</p>
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="closeInterviewModal()" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold py-2 px-6 rounded-full transition-colors">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white', 'shadow-md', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-4');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-4');
+                navbar.classList.remove('bg-white', 'shadow-md', 'py-2');
+            }
+        });
+
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.innerHTML = '<i class="fa fa-bars text-2xl"></i>';
+        }
+
+        mobileMenuButton.addEventListener('click', function() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuButton.innerHTML = '<i class="fa fa-times text-2xl"></i>';
+            } else {
+                closeMobileMenu();
+            }
+        });
+
+        // 滚动到指定区域
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            closeMobileMenu();
+        }
+
+        // 实施方案步骤切换
+        function setActiveStep(stepNumber) {
+            // 移除所有步骤按钮的活动状态
+            document.querySelectorAll('.implementation-step-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-50', 'text-amber-800', 'font-medium', 'border-l-4', 'border-amber-600');
+                btn.classList.add('text-neutral-600', 'hover:bg-neutral-50');
+                
+                // 更新按钮内的图标容器样式
+                const iconContainer = btn.querySelector('div.w-10');
+                iconContainer.classList.remove('bg-amber-100', 'text-amber-700');
+                iconContainer.classList.add('bg-neutral-100', 'text-neutral-500');
+            });
+            
+            // 设置当前步骤按钮为活动状态
+            const activeBtn = document.querySelector(`.implementation-step-btn:nth-child(${stepNumber})`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-neutral-600', 'hover:bg-neutral-50');
+                activeBtn.classList.add('bg-amber-50', 'text-amber-800', 'font-medium', 'border-l-4', 'border-amber-600');
+                
+                // 更新活动按钮内的图标容器样式
+                const activeIconContainer = activeBtn.querySelector('div.w-10');
+                activeIconContainer.classList.remove('bg-neutral-100', 'text-neutral-500');
+                activeIconContainer.classList.add('bg-amber-100', 'text-amber-700');
+            }
+            
+            // 隐藏所有步骤内容
+            document.querySelectorAll('.implementation-step').forEach(step => {
+                step.classList.add('hidden');
+            });
+            
+            // 显示当前步骤内容
+            const activeStepContent = document.getElementById(`step-${stepNumber}`);
+            if (activeStepContent) {
+                activeStepContent.classList.remove('hidden');
+                activeStepContent.classList.add('active');
+            }
+        }
+
+        // 标签切换
+        function switchTab(tabId) {
+            // 隐藏所有标签内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+                content.classList.add('hidden');
+            });
+            
+            // 显示选中标签内容
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            document.getElementById(`content-${tabId}`).classList.add('active');
+            
+            // 更新标签按钮样式
+            document.querySelectorAll('[id^="tab-"]').forEach(tab => {
+                tab.classList.remove('text-amber-900', 'border-b-2', 'border-amber-600');
+                tab.classList.add('text-neutral-500', 'hover:text-amber-700', 'hover:bg-amber-50');
+            });
+            
+            document.getElementById(`tab-${tabId}`).classList.remove('text-neutral-500', 'hover:text-amber-700', 'hover:bg-amber-50');
+            document.getElementById(`tab-${tabId}`).classList.add('text-amber-900', 'border-b-2', 'border-amber-600');
+        }
+
+        // 访谈详情模态框
+        function openInterviewDetail() {
+            document.getElementById('interview-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInterviewModal() {
+            document.getElementById('interview-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function showInterview(interviewId) {
+            // 切换访谈内容的逻辑
+            console.log(`显示访谈 ${interviewId}`);
+        }
+
+        function showStory(storyId) {
+            // 切换故事内容的逻辑
+            console.log(`显示故事 ${storyId}`);
+        }
+
+        function openStoryDetail() {
+            // 打开故事详情的逻辑
+            console.log('打开故事详情');
+        }
+    </script>
+</body>
+</html>
